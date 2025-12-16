@@ -155,6 +155,7 @@
             margin-top: 20px;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -467,7 +468,7 @@
                 <p><strong>Email :</strong> vincent@guignon.fr</p>
                 <p><strong>Téléphone :</strong> 07 61 14 57 07</p>
 
-                <form method="post" action="contact.php">
+                <form id="contactForm">
                     <input type="text" name="nom" placeholder="Votre nom" required />
                     <input type="email" name="email" placeholder="Votre email" required />
                     <textarea rows="5" name="message" placeholder="Votre message"></textarea>
@@ -491,6 +492,29 @@
         <p>© 2025 - Vincent Guignon | Portfolio BTS SIO SISR</p>
     </footer>
 
+    <script>
+        (function () {
+            emailjs.init("jC7OkE87YxBsLqVG4"); // <-- ta clé ici
+        })();
+
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            emailjs.sendForm(
+                "service_br3gkbn",
+                "template_fwhg1mj",
+                this
+            )
+                .then(() => {
+                    document.getElementById("status").innerText = "Message envoyé ✅";
+                    this.reset();
+                })
+                .catch((error) => {
+                    document.getElementById("status").innerText = "Erreur ❌";
+                    console.error(error);
+                });
+        });
+    </script>
 </body>
 
 </html>
