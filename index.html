@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Vincent Guignon</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background: #222;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 5px 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 50px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1e3c72;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .skills ul li {
+            margin-bottom: 8px;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        input,
+        textarea,
+        button {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2a5298;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .cv-box {
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #1e3c72;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Vincent Guignon</h1>
+        <p>Étudiant en 2ᵉ année de BTS SIO option SISR</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#presentation">Présentation</a></li>
+            <li><a href="#ecole">École</a></li>
+            <li><a href="#specialite">Spécialité</a></li>
+            <li><a href="#certification">Certification</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#experience">Expériences</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#veille">Veille</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="presentation">
+        <h2>Présentation</h2>
+        <div class="card">
+            <p>
+                Je m'appelle <strong>Vincent Guignon</strong>, j'ai <strong>19 ans</strong> et je suis actuellement
+                étudiant en
+                <strong>2ᵉ année de BTS SIO</strong> option <strong>SISR</strong> à l'école <strong>IRIS</strong> située
+                dans le 17ᵉ arrondissement de Paris.
+                Passionné par l'informatique, les réseaux et les systèmes, je souhaite évoluer dans les métiers de
+                l'administration
+                systèmes et réseaux.
+            </p>
+        </div>
+    </section>
+
+    <section id="ecole">
+        <h2>Mon école : IRIS</h2>
+        <div class="grid">
+            <div class="card">
+                <p>
+                    L'école <strong>IRIS</strong> est un établissement spécialisé dans les formations informatiques et
+                    numériques.
+                    Elle propose des cursus professionnalisants, dont le BTS SIO, permettant d'acquérir des compétences
+                    techniques
+                    solides et adaptées au monde professionnel.
+                </p>
+            </div>
+            <div class="card">
+                <iframe src="https://www.google.com/maps?q=ecole%20iris%20paris%2017&output=embed"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="specialite">
+        <h2>BTS SIO - Option SISR</h2>
+        <div class="card">
+            <p>
+                Le <strong>BTS Services Informatiques aux Organisations (SIO)</strong>, option <strong>SISR</strong>
+                (Solutions d'Infrastructure, Systèmes et Réseaux), forme des professionnels capables de :
+            </p>
+            <ul>
+                <li>Administrer et sécuriser des infrastructures réseaux</li>
+                <li>Gérer des serveurs et des services informatiques</li>
+                <li>Assurer la maintenance et le support informatique</li>
+                <li>Mettre en place des solutions adaptées aux besoins des entreprises</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="certification">
+        <H2>Certification</H2>
+        <div class="card">
+            <p>
+                <strong>Certification Cybersécurité :</strong>
+                <embed src="Certification.pdf" type="application/pdf" width="100%" height="600px" />
+            </p>
+        </div>
+    </section>
+
+    <section id="parcours">
+        <h2>Parcours scolaire</h2>
+        <div class="grid">
+            <div class="card">
+                <p>
+                    J'ai obtenu un <strong>Bac Professionnel SN (Systèmes Numériques)</strong>, option
+                    <strong>RISC (Réseaux Informatiques et Systèmes Communicants)</strong>,
+                    au <strong>Lycée Polyvalent de Cachan</strong>. Cette formation m'a permis d'acquérir de solides
+                    bases techniques
+                    en informatique, réseaux et systèmes.
+                </p>
+            </div>
+            <div class="card">
+                <iframe src="https://www.google.com/maps?q=lycee%20polyvalent%20de%20cachan&output=embed"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Expériences professionnelles</h2>
+
+        <div class="card">
+            <p>
+                Durant mes <strong>3 années de lycée</strong>, j'ai effectué <strong>22 semaines de stage</strong>
+                dans <strong>3 entreprises différentes</strong>, ce qui m'a permis de découvrir le monde professionnel
+                et de développer mes compétences techniques.
+            </p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Aldorande Pasteur</h3>
+                <p>
+                    Stage de 6 semaines en seconde dans un magasin de réparation informatique
+                    <strong>agréé Apple</strong>. Découverte de l'environnement informatique et du support technique.
+                </p>
+                <iframe src="https://www.google.com/maps?q=aldorande%20pasteur&output=embed"></iframe>
+            </div>
+
+            <div class="card">
+                <h3>Extratis</h3>
+                <p>
+                    Stage de 8 semaines en première au sein d'une entreprise de
+                    <strong>prestation informatique</strong>. Intervention sur des infrastructures
+                    systèmes, réseaux et support aux utilisateurs.
+                </p>
+                <iframe src="https://www.google.com/maps?q=extratis&output=embed"></iframe>
+            </div>
+
+            <div class="card">
+                <h3>Chronodisk</h3>
+                <p>
+                    Stage de 8 semaines en terminale dans un
+                    <strong>laboratoire spécialisé en récupération de données</strong>.
+                    Découverte des procédures de maintenance et de gestion des systèmes.
+                </p>
+                <iframe src="https://www.google.com/maps?q=chronodisk&output=embed"></iframe>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h3>Alternance - BTS SIO</h3>
+            <p>
+                Durant mon BTS SIO, je réalise mon <strong>alternance</strong> au sein de l'entreprise
+                <strong>Extratis</strong>,
+                où je participe activement à la gestion des systèmes, des réseaux et à la sécurité informatique.
+            </p>
+        </div>
+    </section>
+
+    <section id="competences" class="skills">
+        <h2>Compétences</h2>
+        <div class="grid">
+            <div class="card" style="text-align:center;">
+                <h3>Matériel</h3>
+                <ul style="list-style:none; padding:0;">
+                    <li>💻 Assemblage et maintenance de PC</li>
+                    <li>🛠️ Installation de logiciels et systèmes d'exploitation</li>
+                    <li>🔧 Diagnostic de pannes PC et disques durs</li>
+                </ul>
+            </div>
+            <div class="card" style="text-align:center;">
+                <h3>Logiciels & Programmation</h3>
+                <ul style="list-style:none; padding:0;">
+                    <li>💻 Bases en HTML, CSS, PHP</li>
+                    <li>🌐 Connaissances en réseaux informatiques</li>
+                    <li>💾 Récupération de données</li>
+                    <li>🐧 Bases en Linux</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets">
+        <h2>Projets réalisés</h2>
+
+        <div class="grid">
+            <div class="card project">
+                <img src="img/baie.jpg" alt="Baies de brassage">
+                <h3>Baies de brassage</h3>
+                <p>Organisation et gestion du câblage réseau.</p>
+            </div>
+
+            <div class="card project">
+                <img src="img/wifi.jpg" alt="Wi-Fi">
+                <h3>Wi-Fi</h3>
+                <p>Mise en place de réseaux sans fil sécurisés.</p>
+            </div>
+
+            <div class="card project">
+                <img src="img/vpn.png" alt="VPN">
+                <h3>VPN</h3>
+                <p>Accès distant sécurisé aux réseaux d'entreprise.</p>
+            </div>
+
+            <div class="card project">
+                <img src="img/firewall.png" alt="Firewall">
+                <h3>Firewall</h3>
+                <p>Protection des réseaux contre les intrusions.</p>
+            </div>
+
+            <div class="card project">
+                <img src="img/ad.png" alt="Windows Server">
+                <h3>Windows Server & Active Directory</h3>
+                <p>Gestion des utilisateurs et des ressources via Active Directory.</p>
+            </div>
+
+            <div class="card project">
+                <img src="img/nas.png" alt="NAS">
+                <h3>NAS</h3>
+                <p>Stockage, sauvegarde et partage de données en réseau.</p>
+            </div>
+
+            <div class="card project">
+                <img src="img/linux.png" alt="Linux & macOS">
+                <h3>Linux & macOS</h3>
+                <p>Installation et administration de systèmes d'exploitation.</p>
+            </div>
+
+            <div class="card project">
+                <img src="img/dns.png" alt="Domaines, emails et web">
+                <h3>Domaines, e-mails & sites web</h3>
+                <p>Mise en place de services DNS, messagerie et site internet.</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:40px; text-align:center;">
+            <h3>Tableau de synthèse – Épreuve E5</h3>
+            <p>Télécharger le tableau récapitulatif des compétences et projets réalisés.</p>
+            <a href="Tableau de synthèse - Epreuve E5.xlsx" download style="display:inline-block; margin-top:15px; padding:12px 25px;
+                   background-color:#1e3c72; color:white; text-decoration:none;
+                   border-radius:8px; font-weight:500;">
+                Télécharger le tableau de synthèse
+            </a>
+        </div>
+    </section>
+
+    <section id="veille">
+        <h2>Veille technologique</h2>
+
+        <div class="card">
+            <p>
+                La veille technologique consiste à suivre l’évolution des technologies, des outils et des pratiques
+                dans le domaine des systèmes et des réseaux informatiques afin d’anticiper les changements,
+                d’améliorer les compétences professionnelles et d’adapter les solutions techniques.
+            </p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Cybersécurité</h3>
+                <p>
+                    Suivi des menaces informatiques, des vulnérabilités, des solutions de protection et des bonnes
+                    pratiques en matière de sécurité des systèmes et des réseaux.
+                </p>
+                <ul>
+                    <li>Ransomwares et attaques par phishing</li>
+                    <li>Pare-feu et solutions de sécurité</li>
+                    <li>Bonnes pratiques de sécurisation</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Réseaux & Infrastructures</h3>
+                <p>
+                    Observation des évolutions des infrastructures réseau et des technologies utilisées en entreprise.
+                </p>
+                <ul>
+                    <li>Réseaux Wi-Fi (Wi-Fi 6 / 6E)</li>
+                    <li>VPN et accès distants sécurisés</li>
+                    <li>Virtualisation et infrastructures</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Systèmes & Serveurs</h3>
+                <p>
+                    Veille autour des systèmes d’exploitation et des solutions serveur utilisées en environnement
+                    professionnel.
+                </p>
+                <ul>
+                    <li>Windows Server et Active Directory</li>
+                    <li>Linux (administration et services)</li>
+                    <li>Solutions de sauvegarde et NAS</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Outils et méthodes de veille</h3>
+                <p>
+                    Outils utilisés pour effectuer une veille technologique efficace et organisée.
+                </p>
+                <ul>
+                    <li>Sites spécialisés (ANSSI, CNIL, IT-Connect)</li>
+                    <li>Flux RSS et newsletters</li>
+                    <li>Chaînes YouTube et forums techniques</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="grid">
+            <div class="card">
+                <p><strong>Email :</strong> vincent@guignon.fr</p>
+                <p><strong>Téléphone :</strong> 07 61 14 57 07</p>
+
+                <form method="post" action="contact.php">
+                    <input type="text" name="nom" placeholder="Votre nom" required />
+                    <input type="email" name="email" placeholder="Votre email" required />
+                    <textarea rows="5" name="message" placeholder="Votre message"></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Curriculum Vitae</h3>
+                <embed src="CV.pdf" type="application/pdf" width="100%" height="600px" />
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="CV.pdf" download
+                        style="padding:10px 20px; background-color:#1e3c72; color:white; text-decoration:none; border-radius:5px;">Télécharger
+                        le CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 - Vincent Guignon | Portfolio BTS SIO SISR</p>
+    </footer>
+
+</body>
+
+</html>
