@@ -2,519 +2,1020 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Vincent Guignon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Vincent Guignon</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
     <style>
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            background-color: white;
+        :root {
+            --bg: #0a0a0f;
+            --bg2: #111118;
+            --bg3: #16161f;
+            --surface: #1c1c28;
+            --surface2: #222232;
+            --accent: #6c63ff;
+            --accent2: #a78bfa;
+            --accent3: #38bdf8;
+            --text: #e8e8f0;
+            --text-muted: #8888aa;
+            --border: rgba(108, 99, 255, 0.18);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            color: #333;
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            line-height: 1.65;
+            overflow-x: hidden;
         }
 
-        header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
+        /* ── NOISE OVERLAY ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
         }
 
-        header p {
-            font-size: 1.2em;
-        }
-
+        /* ── NAV ── */
         nav {
-            background: #222;
-            padding: 10px;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 18px 30px;
+            background: rgba(10, 10, 15, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
         }
 
         nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 5px 15px;
+            list-style: none;
+            gap: 8px;
         }
 
         nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 100px;
+            transition: color 0.2s, background 0.2s;
         }
 
-        nav ul li a:hover {
-            text-decoration: underline;
+        nav ul li a:hover,
+        nav ul li a.active-link {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* ── PAGES ── */
+        .page {
+            display: none;
+            width: 100%;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        #accueil.page:not(.active) {
+            display: none !important;
+        }
+
+        #accueil {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page:not(.active) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        /* ── HERO ── */
+        #accueil {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.18) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            pointer-events: none;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero-glow2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+            top: 30%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -60%) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(-50%, -62%) scale(1.08);
+                opacity: 0.7;
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent2);
+            background: rgba(108, 99, 255, 0.12);
+            border: 1px solid rgba(108, 99, 255, 0.25);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent2) 70%, var(--accent3) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 13px 28px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(108, 99, 255, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent2);
+            box-shadow: 0 0 40px rgba(167, 139, 250, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-contact {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .hero-contact-item .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .certif-section {
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .certif-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .certif-embed {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ── MAIN / SECTIONS ── */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 24px 80px;
         }
 
         section {
-            padding: 50px 20px;
-            max-width: 1100px;
-            margin: auto;
+            margin-bottom: 90px;
         }
 
         section h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #1e3c72;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
 
+        section h2::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 1.2em;
+            background: linear-gradient(180deg, var(--accent), var(--accent3));
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ── CARDS ── */
         .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            margin-bottom: 30px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+
+        .card:hover {
+            border-color: rgba(108, 99, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .card p strong {
+            color: var(--text);
         }
 
         .grid {
             display: grid;
+            gap: 20px;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        /* ── MAP CARD ── */
+        iframe {
+            width: 100%;
+            height: 280px;
+            border: none;
+            border-radius: 10px;
+            opacity: 0.85;
+        }
+
+        /* ── PROJECT CARDS ── */
+        .card.project {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card.project .proj-img {
+            width: 100%;
+            height: 160px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 16px;
+            filter: brightness(0.85) saturate(0.9);
+            transition: filter 0.25s;
+        }
+
+        .card.project:hover .proj-img {
+            filter: brightness(1) saturate(1);
+        }
+
+        .card.project h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .card.project p {
+            font-size: 0.9rem;
+        }
+
+        .proj-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent2);
+            background: rgba(108, 99, 255, 0.1);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+
+        /* ── SYNTH TABLE CARD ── */
+        .dl-card {
+            margin-top: 40px;
+            background: linear-gradient(135deg, var(--surface), var(--surface2));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 20px;
         }
 
-        img {
-            max-width: 100%;
-            max-height: 100%;
+        .dl-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        iframe {
-            width: 100%;
-            height: 300px;
-            border: none;
-            border-radius: 10px;
+        .dl-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        ul {
-            padding-left: 20px;
+        /* ── VEILLE CARDS ── */
+        .card ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .skills ul li {
+        .card ul li {
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .card ul li::before {
+            content: '→';
+            color: var(--accent2);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        /* ── VEILLE INTRO ── */
+        .veille-intro {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.06), rgba(56, 189, 248, 0.06));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .veille-intro::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--accent3));
+        }
+
+        /* ── E6 PLACEHOLDER ── */
+        .e6-placeholder {
+            background: var(--surface);
+            border: 1px dashed rgba(108, 99, 255, 0.3);
+            border-radius: var(--radius);
+            padding: 50px 30px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .e6-placeholder .placeholder-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .e6-placeholder h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
             margin-bottom: 8px;
+            color: var(--text);
         }
 
-        form {
-            display: grid;
-            gap: 15px;
-        }
-
-        input,
-        textarea,
-        button {
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1em;
-        }
-
-        button {
-            background: #1e3c72;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #2a5298;
-        }
-
+        /* ── FOOTER ── */
         footer {
-            background: #222;
-            color: white;
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
-        .cv-box {
-            text-align: center;
-            padding: 20px;
-            border: 2px dashed #1e3c72;
-            border-radius: 10px;
-            margin-top: 20px;
+        footer span {
+            color: var(--accent2);
+        }
+
+        /* ── SCROLL FADE-IN ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .fade-in:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .fade-in:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .fade-in:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .fade-in:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+
+        .fade-in:nth-child(6) {
+            animation-delay: 0.3s;
+        }
+
+        .fade-in:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+
+        .fade-in:nth-child(8) {
+            animation-delay: 0.4s;
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 60px 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            nav ul li a {
+                padding: 8px 10px;
+                font-size: 0.72rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            main {
+                padding: 80px 16px 60px;
+            }
+
+            .dl-card {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 
 <body>
 
-    <header>
-        <h1>Vincent Guignon</h1>
-        <p>Étudiant en 2ᵉ année de BTS SIO option SISR</p>
-    </header>
-
     <nav>
         <ul>
-            <li><a href="#presentation">Présentation</a></li>
-            <li><a href="#ecole">École</a></li>
-            <li><a href="#specialite">Spécialité</a></li>
-            <li><a href="#certification">Certification</a></li>
-            <li><a href="#parcours">Parcours</a></li>
-            <li><a href="#experience">Expériences</a></li>
-            <li><a href="#competences">Compétences</a></li>
-            <li><a href="#projets">Projets</a></li>
-            <li><a href="#veille">Veille</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" data-page="accueil">Accueil</a></li>
+            <li><a href="#" data-page="presentation">Présentation</a></li>
+            <li><a href="#" data-page="epreuve-e5">Épreuve E5</a></li>
+            <li><a href="#" data-page="epreuve-e6">Épreuve E6</a></li>
+            <li><a href="#" data-page="veille">Veille</a></li>
         </ul>
     </nav>
 
-    <section id="presentation">
-        <h2>Présentation</h2>
-        <div class="card">
-            <p>
-                Je m'appelle <strong>Vincent Guignon</strong>, j'ai <strong>19 ans</strong> et je suis actuellement
-                étudiant en
-                <strong>2ᵉ année de BTS SIO</strong> option <strong>SISR</strong> à l'école <strong>IRIS</strong> située
-                dans le 17ᵉ arrondissement de Paris.
-                Passionné par l'informatique, les réseaux et les systèmes, je souhaite évoluer dans les métiers de
-                l'administration
-                systèmes et réseaux.
-            </p>
-        </div>
-    </section>
-
-    <section id="ecole">
-        <h2>Mon école : IRIS</h2>
-        <div class="grid">
-            <div class="card">
-                <p>
-                    L'école <strong>IRIS</strong> est un établissement spécialisé dans les formations informatiques et
-                    numériques.
-                    Elle propose des cursus professionnalisants, dont le BTS SIO, permettant d'acquérir des compétences
-                    techniques
-                    solides et adaptées au monde professionnel.
-                </p>
+    <!-- ══ ACCUEIL ══ -->
+    <div id="accueil" class="page active">
+        <div class="hero-glow"></div>
+        <div class="hero-glow2"></div>
+        <div class="hero-content">
+            <div class="hero-badge">✦ BTS SIO · Option SISR</div>
+            <h1>Vincent<br>Guignon</h1>
+            <p>Étudiant en 2ᵉ année de BTS SIO, passionné par les systèmes, les réseaux et la cybersécurité.</p>
+            <div class="hero-btns">
+                <button class="btn btn-primary" onclick="showPage('presentation')">
+                    <span>En savoir plus</span>
+                    <span>→</span>
+                </button>
+                <a href="CV.pdf" download class="btn btn-ghost">Voir mon CV</a>
             </div>
-            <div class="card">
-                <iframe src="https://www.google.com/maps?q=ecole%20iris%20paris%2017&output=embed"></iframe>
+            <div class="hero-contact">
+                <div class="hero-contact-item">
+                    <div class="icon">✉</div>
+                    <span>vincent@guignon.fr</span>
+                </div>
+                <div class="hero-contact-item">
+                    <div class="icon">☎</div>
+                    <span>07 61 14 57 07</span>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section id="specialite">
-        <h2>BTS SIO - Option SISR</h2>
-        <div class="card">
-            <p>
-                Le <strong>BTS Services Informatiques aux Organisations (SIO)</strong>, option <strong>SISR</strong>
-                (Solutions d'Infrastructure, Systèmes et Réseaux), forme des professionnels capables de :
-            </p>
-            <ul>
-                <li>Administrer et sécuriser des infrastructures réseaux</li>
-                <li>Gérer des serveurs et des services informatiques</li>
-                <li>Assurer la maintenance et le support informatique</li>
-                <li>Mettre en place des solutions adaptées aux besoins des entreprises</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="certification">
-        <H2>Certification</H2>
-        <div class="card">
-            <p>
-                <strong>Certification Cybersécurité :</strong>
-                <embed src="Certification.pdf" type="application/pdf" width="100%" height="600px" />
-            </p>
-        </div>
-    </section>
-
-    <section id="parcours">
-        <h2>Parcours scolaire</h2>
-        <div class="grid">
-            <div class="card">
-                <p>
-                    J'ai obtenu un <strong>Bac Professionnel SN (Systèmes Numériques)</strong>, option
-                    <strong>RISC (Réseaux Informatiques et Systèmes Communicants)</strong>,
-                    au <strong>Lycée Polyvalent de Cachan</strong>. Cette formation m'a permis d'acquérir de solides
-                    bases techniques
-                    en informatique, réseaux et systèmes.
-                </p>
-            </div>
-            <div class="card">
-                <iframe src="https://www.google.com/maps?q=lycee%20polyvalent%20de%20cachan&output=embed"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience">
-        <h2>Expériences professionnelles</h2>
-
-        <div class="card">
-            <p>
-                Durant mes <strong>3 années de lycée</strong>, j'ai effectué <strong>22 semaines de stage</strong>
-                dans <strong>3 entreprises différentes</strong>, ce qui m'a permis de découvrir le monde professionnel
-                et de développer mes compétences techniques.
-            </p>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>Aldorande Pasteur</h3>
-                <p>
-                    Stage de 6 semaines en seconde dans un magasin de réparation informatique
-                    <strong>agréé Apple</strong>. Découverte de l'environnement informatique et du support technique.
-                </p>
-                <iframe src="https://www.google.com/maps?q=aldorande%20pasteur&output=embed"></iframe>
-            </div>
-
-            <div class="card">
-                <h3>Extratis</h3>
-                <p>
-                    Stage de 8 semaines en première au sein d'une entreprise de
-                    <strong>prestation informatique</strong>. Intervention sur des infrastructures
-                    systèmes, réseaux et support aux utilisateurs.
-                </p>
-                <iframe src="https://www.google.com/maps?q=extratis&output=embed"></iframe>
-            </div>
-
-            <div class="card">
-                <h3>Chronodisk</h3>
-                <p>
-                    Stage de 8 semaines en terminale dans un
-                    <strong>laboratoire spécialisé en récupération de données</strong>.
-                    Découverte des procédures de maintenance et de gestion des systèmes.
-                </p>
-                <iframe src="https://www.google.com/maps?q=chronodisk&output=embed"></iframe>
-            </div>
-        </div>
-
-
-        <div class="card">
-            <h3>Alternance - BTS SIO</h3>
-            <p>
-                Durant mon BTS SIO, je réalise mon <strong>alternance</strong> au sein de l'entreprise
-                <strong>Extratis</strong>,
-                où je participe activement à la gestion des systèmes, des réseaux et à la sécurité informatique.
-            </p>
-        </div>
-    </section>
-
-    <section id="competences" class="skills">
-        <h2>Compétences</h2>
-        <div class="grid">
-            <div class="card" style="text-align:center;">
-                <h3>Matériel</h3>
-                <ul style="list-style:none; padding:0;">
-                    <li>💻 Assemblage et maintenance de PC</li>
-                    <li>🛠️ Installation de logiciels et systèmes d'exploitation</li>
-                    <li>🔧 Diagnostic de pannes PC et disques durs</li>
-                </ul>
-            </div>
-            <div class="card" style="text-align:center;">
-                <h3>Logiciels & Programmation</h3>
-                <ul style="list-style:none; padding:0;">
-                    <li>💻 Bases en HTML, CSS, PHP</li>
-                    <li>🌐 Connaissances en réseaux informatiques</li>
-                    <li>💾 Récupération de données</li>
-                    <li>🐧 Bases en Linux</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="projets">
-        <h2>Projets réalisés</h2>
-
-        <div class="grid">
-            <div class="card project">
-                <img src="img/baie.jpg" alt="Baies de brassage">
-                <h3>Baies de brassage</h3>
-                <p>Organisation et gestion du câblage réseau.</p>
-            </div>
-
-            <div class="card project">
-                <img src="img/wifi.jpg" alt="Wi-Fi">
-                <h3>Wi-Fi</h3>
-                <p>Mise en place de réseaux sans fil sécurisés.</p>
-            </div>
-
-            <div class="card project">
-                <img src="img/vpn.png" alt="VPN">
-                <h3>VPN</h3>
-                <p>Accès distant sécurisé aux réseaux d'entreprise.</p>
-            </div>
-
-            <div class="card project">
-                <img src="img/firewall.png" alt="Firewall">
-                <h3>Firewall</h3>
-                <p>Protection des réseaux contre les intrusions.</p>
-            </div>
-
-            <div class="card project">
-                <img src="img/ad.png" alt="Windows Server">
-                <h3>Windows Server & Active Directory</h3>
-                <p>Gestion des utilisateurs et des ressources via Active Directory.</p>
-            </div>
-
-            <div class="card project">
-                <img src="img/nas.png" alt="NAS">
-                <h3>NAS</h3>
-                <p>Stockage, sauvegarde et partage de données en réseau.</p>
-            </div>
-
-            <div class="card project">
-                <img src="img/linux.png" alt="Linux & macOS">
-                <h3>Linux & macOS</h3>
-                <p>Installation et administration de systèmes d'exploitation.</p>
-            </div>
-
-            <div class="card project">
-                <img src="img/dns.png" alt="Domaines, emails et web">
-                <h3>Domaines, e-mails & sites web</h3>
-                <p>Mise en place de services DNS, messagerie et site internet.</p>
-            </div>
-        </div>
-
-        <div class="card" style="margin-top:40px; text-align:center;">
-            <h3>Tableau de synthèse – Épreuve E5</h3>
-            <p>Télécharger le tableau récapitulatif des compétences et projets réalisés.</p>
-            <a href="Tableau de synthèse - Epreuve E5.xlsx" download style="display:inline-block; margin-top:15px; padding:12px 25px;
-                   background-color:#1e3c72; color:white; text-decoration:none;
-                   border-radius:8px; font-weight:500;">
-                Télécharger le tableau de synthèse
-            </a>
-        </div>
-    </section>
-
-    <section id="veille">
-        <h2>Veille technologique</h2>
-
-        <div class="card">
-            <p>
-                La veille technologique consiste à suivre l’évolution des technologies, des outils et des pratiques
-                dans le domaine des systèmes et des réseaux informatiques afin d’anticiper les changements,
-                d’améliorer les compétences professionnelles et d’adapter les solutions techniques.
-            </p>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>Cybersécurité</h3>
-                <p>
-                    Suivi des menaces informatiques, des vulnérabilités, des solutions de protection et des bonnes
-                    pratiques en matière de sécurité des systèmes et des réseaux.
-                </p>
-                <ul>
-                    <li>Ransomwares et attaques par phishing</li>
-                    <li>Pare-feu et solutions de sécurité</li>
-                    <li>Bonnes pratiques de sécurisation</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Réseaux & Infrastructures</h3>
-                <p>
-                    Observation des évolutions des infrastructures réseau et des technologies utilisées en entreprise.
-                </p>
-                <ul>
-                    <li>Réseaux Wi-Fi (Wi-Fi 6 / 6E)</li>
-                    <li>VPN et accès distants sécurisés</li>
-                    <li>Virtualisation et infrastructures</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Systèmes & Serveurs</h3>
-                <p>
-                    Veille autour des systèmes d’exploitation et des solutions serveur utilisées en environnement
-                    professionnel.
-                </p>
-                <ul>
-                    <li>Windows Server et Active Directory</li>
-                    <li>Linux (administration et services)</li>
-                    <li>Solutions de sauvegarde et NAS</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Outils et méthodes de veille</h3>
-                <p>
-                    Outils utilisés pour effectuer une veille technologique efficace et organisée.
-                </p>
-                <ul>
-                    <li>Sites spécialisés (ANSSI, CNIL, IT-Connect)</li>
-                    <li>Flux RSS et newsletters</li>
-                    <li>Chaînes YouTube et forums techniques</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="grid">
-            <div class="card">
-                <p><strong>Email :</strong> vincent@guignon.fr</p>
-                <p><strong>Téléphone :</strong> 07 61 14 57 07</p>
-
-                <form id="contactForm">
-                    <input type="text" name="nom" placeholder="Votre nom" required />
-                    <input type="email" name="email" placeholder="Votre email" required />
-                    <textarea rows="5" name="message" placeholder="Votre message"></textarea>
-                    <button type="submit">Envoyer</button>
-                </form>
-                <p id="status"></p>
-            </div>
-
-            <div class="card">
-                <h3>Curriculum Vitae</h3>
-                <embed src="CV.pdf" type="application/pdf" width="100%" height="600px" />
-                <div style="text-align:center; margin-top:15px;">
-                    <a href="CV.pdf" download
-                        style="padding:10px 20px; background-color:#1e3c72; color:white; text-decoration:none; border-radius:5px;">Télécharger
-                        le CV</a>
+            <div class="certif-section">
+                <h3>Certification</h3>
+                <div class="certif-embed">
+                    <embed src="Certification.pdf" type="application/pdf" width="400px" height="280px" />
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- ══ PRESENTATION ══ -->
+    <div id="presentation" class="page">
+        <main>
+            <section>
+                <h2>Présentation</h2>
+                <div class="card">
+                    <p>
+                        Je m'appelle <strong>Vincent Guignon</strong>, j'ai <strong>19 ans</strong> et je suis étudiant
+                        en
+                        <strong>2ᵉ année de BTS SIO</strong> option <strong>SISR</strong> à l'école
+                        <strong>IRIS</strong>,
+                        dans le 17ᵉ arrondissement de Paris. Passionné par l'informatique, les réseaux et les systèmes,
+                        je souhaite évoluer dans les métiers de l'administration systèmes et réseaux.
+                    </p>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <section>
+                <h2>Mon école</h2>
+                <div class="grid">
+                    <div class="card" style="display:flex;flex-direction:column;justify-content:center;">
+                        <div class="proj-tag">Établissement</div>
+                        <p>
+                            L'école <strong>IRIS</strong> est un établissement spécialisé dans les formations
+                            informatiques et numériques. Elle propose des cursus professionnalisants, dont le BTS SIO,
+                            permettant d'acquérir des compétences techniques solides adaptées au monde professionnel.
+                        </p>
+                    </div>
+                    <div class="card" style="padding:0;overflow:hidden;">
+                        <iframe src="https://www.google.com/maps?q=ecole%20iris%20paris%2017&output=embed"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <section>
+                <h2>Mon entreprise</h2>
+                <div class="grid">
+                    <div class="card" style="display:flex;flex-direction:column;justify-content:center;">
+                        <div class="proj-tag">Alternance</div>
+                        <p>
+                            Durant mon BTS SIO, je réalise mon alternance au sein de l'entreprise
+                            <strong>Extratis</strong>, où je participe activement à la gestion des systèmes,
+                            des réseaux et à la sécurité informatique.
+                        </p>
+                    </div>
+
+                    <div class="card" style="padding:0;overflow:hidden;">
+                        <iframe src="https://www.google.com/maps?q=extratis&output=embed"></iframe>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ══ EPREUVE E5 ══ -->
+    <div id="epreuve-e5" class="page">
+        <main>
+            <section>
+                <h2>Projets réalisés</h2>
+                <div class="grid">
+                    <div class="card project fade-in">
+                        <img src="img/baie.jpg" alt="Baies de brassage" class="proj-img">
+                        <div class="proj-tag">Infrastructure</div>
+                        <h3>Baies de brassage</h3>
+                        <p>Organisation et gestion du câblage réseau.</p>
+                    </div>
+                    <div class="card project fade-in">
+                        <img src="img/wifi.jpg" alt="Wi-Fi" class="proj-img">
+                        <div class="proj-tag">Réseau</div>
+                        <h3>Wi-Fi</h3>
+                        <p>Mise en place de réseaux sans fil sécurisés.</p>
+                    </div>
+                    <div class="card project fade-in">
+                        <img src="img/vpn.png" alt="VPN" class="proj-img">
+                        <div class="proj-tag">Sécurité</div>
+                        <h3>VPN</h3>
+                        <p>Accès distant sécurisé aux réseaux d'entreprise.</p>
+                    </div>
+                    <div class="card project fade-in">
+                        <img src="img/firewall.png" alt="Firewall" class="proj-img">
+                        <div class="proj-tag">Sécurité</div>
+                        <h3>Firewall</h3>
+                        <p>Protection des réseaux contre les intrusions.</p>
+                    </div>
+                    <div class="card project fade-in">
+                        <img src="img/ad.png" alt="Windows Server" class="proj-img">
+                        <div class="proj-tag">Système</div>
+                        <h3>Windows Server & Active Directory</h3>
+                        <p>Gestion des utilisateurs et des ressources via Active Directory.</p>
+                    </div>
+                    <div class="card project fade-in">
+                        <img src="img/nas.png" alt="NAS" class="proj-img">
+                        <div class="proj-tag">Stockage</div>
+                        <h3>NAS</h3>
+                        <p>Stockage, sauvegarde et partage de données en réseau.</p>
+                    </div>
+                    <div class="card project fade-in">
+                        <img src="img/linux.png" alt="Linux & macOS" class="proj-img">
+                        <div class="proj-tag">Système</div>
+                        <h3>Linux & macOS</h3>
+                        <p>Installation et administration de systèmes d'exploitation.</p>
+                    </div>
+                    <div class="card project fade-in">
+                        <img src="img/dns.png" alt="DNS & Web" class="proj-img">
+                        <div class="proj-tag">Services</div>
+                        <h3>Domaines, e-mails & sites web</h3>
+                        <p>Mise en place de services DNS, messagerie et site internet.</p>
+                    </div>
+                </div>
+
+                <div class="dl-card" style="flex-direction:column;align-items:center;text-align:center;">
+
+                    <div style="margin-bottom:20px;">
+                        <h3>Tableau de synthèse — Épreuve E5</h3>
+                        <p>Récapitulatif complet des compétences et projets réalisés.</p>
+                    </div>
+
+                    <a href="Tableau de synthèse - Epreuve E5.xlsx" download class="btn btn-primary">
+                        <span>Télécharger</span>
+                        <span>↓</span>
+                    </a>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ══ EPREUVE E6 ══ -->
+    <div id="epreuve-e6" class="page">
+        <main>
+            <section>
+                <h2>Épreuve E6</h2>
+                <div class="grid">
+                    <div class="card project fade-in">
+                        <div class="proj-tag">Infrastructure & Sécurité</div>
+                        <h3>Sécurisation d'une infrastructure réseau</h3>
+
+                        <p>
+                            <strong>Contexte :</strong><br>
+                            Réalisation effectuée dans un environnement simulé basé sur l’entreprise
+                            <strong>Stadium</strong>,
+                            dans le cadre de la modernisation du quai logistique.
+                        </p>
+
+                        <p>
+                            <strong>Objectif :</strong><br>
+                            Mettre en place une infrastructure réseau <strong>sécurisée et segmentée</strong>
+                            permettant de contrôler les accès, automatiser la gestion et superviser les équipements.
+                        </p>
+
+                        <p>
+                            <strong>Technologies utilisées :</strong><br>
+                            VMware ESXi 8.1, Windows Server 2022 (AD DS, DNS, DHCP), Debian 12, Cisco IOS,
+                            OCS Inventory NG, GLPI 10, Nagios Core.
+                        </p>
+
+                        <p>
+                            <strong>Réalisations principales :</strong>
+                        </p>
+                        <ul>
+                            <li>Segmentation du réseau avec création du <strong>VLAN 50</strong></li>
+                            <li>Configuration de <strong>règles ACL Cisco</strong> pour filtrer les accès</li>
+                            <li>Mise en place d’un <strong>Active Directory structuré</strong> (OU, GPO, LAPS)</li>
+                            <li>Déploiement d’un <strong>inventaire automatisé</strong> avec OCS/GLPI</li>
+                            <li>Supervision des équipements avec <strong>Nagios</strong></li>
+                        </ul>
+
+                        <p>
+                            <strong>Résultats :</strong><br>
+                            Infrastructure sécurisée, gestion centralisée des utilisateurs,
+                            inventaire automatisé du parc et supervision active des équipements critiques.
+                        </p>
+                        <div style="margin-top:20px;">
+                            <a href="Fiche_Descriptive_1 1.pdf" download class="btn btn-ghost">
+                                Voir la fiche complète
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card project fade-in">
+                        <div class="proj-tag">Infrastructure & Supervision</div>
+                        <h3>Inventaire automatisé & supervision réseau</h3>
+
+                        <p>
+                            <strong>Contexte :</strong><br>
+                            Réalisation effectuée dans un environnement simulé basé sur l’entreprise
+                            <strong>StadiumCompany</strong>, dans le cadre de la modernisation du quai logistique.
+                        </p>
+
+                        <p>
+                            <strong>Objectif :</strong><br>
+                            Mettre en place une solution <strong>d’inventaire automatisé</strong> et de
+                            <strong>supervision de la continuité de service</strong> afin d’assurer un suivi précis du
+                            parc
+                            informatique et garantir la disponibilité des équipements réseau.
+                        </p>
+
+                        <p>
+                            <strong>Technologies utilisées :</strong><br>
+                            Debian 12 (LAMP), OCS Inventory NG, GLPI 10, Nagios Core, Zimbra.
+                        </p>
+
+                        <p>
+                            <strong>Réalisations principales :</strong>
+                        </p>
+                        <ul>
+                            <li>Mise en place d’un <strong>inventaire automatisé</strong> avec OCS Inventory NG couplé à
+                                GLPI</li>
+                            <li>Déploiement des <strong>agents d’inventaire</strong> sur les postes du quai</li>
+                            <li>Configuration de <strong>Nagios Core</strong> pour la supervision des équipements (ICMP)
+                            </li>
+                            <li>Mise en place d’un <strong>workflow de ticketing</strong> avec GLPI</li>
+                            <li>Utilisation de <strong>Zimbra</strong> pour la coordination des flux logistiques</li>
+                        </ul>
+
+                        <p>
+                            <strong>Résultats :</strong><br>
+                            Inventaire centralisé et fiable du parc informatique, supervision en temps réel des
+                            équipements
+                            critiques, amélioration de la gestion des incidents et meilleure continuité de service.
+                        </p>
+
+                        <div style="margin-top:20px;">
+                            <a href="Fiche_Descriptive_2 1.pdf" download class="btn btn-ghost">
+                                Voir la fiche complète
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+
+                <section style="text-align:center;">
+                    <h2 style="justify-content:center;">Schéma réseau</h2>
+
+                    <div class="card" style="max-width:800px;margin:0 auto;padding:20px;">
+
+                        <p style="margin-bottom:20px;">
+                            Schéma logique de l’infrastructure réseau mise en place dans le cadre de la
+                            sécurisation du quai logistique (VLAN, Active Directory, supervision et inventaire).
+                        </p>
+
+                        <img src="schema-reseau.png" alt="Schéma réseau"
+                            style="width:100%;border-radius:10px;opacity:0.95;">
+
+
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- ══ VEILLE ══ -->
+    <div id="veille" class="page">
+        <main>
+            <section>
+                <h2>Veille technologique</h2>
+
+                <div class="veille-intro">
+                    <p>
+                        La veille technologique consiste à suivre l'évolution des technologies, outils et pratiques
+                        dans le domaine des systèmes et réseaux informatiques afin d'anticiper les changements,
+                        améliorer les compétences professionnelles et adapter les solutions techniques.
+                    </p>
+                </div>
+
+                <div class="grid">
+                    <div class="card fade-in">
+                        <h3>🔐 Cybersécurité</h3>
+                        <ul>
+                            <li>Ransomwares et attaques par phishing</li>
+                            <li>Pare-feu et solutions de sécurité</li>
+                            <li>Bonnes pratiques de sécurisation</li>
+                        </ul>
+                    </div>
+                    <div class="card fade-in">
+                        <h3>🌐 Réseaux & Infrastructures</h3>
+                        <ul>
+                            <li>Réseaux Wi-Fi (Wi-Fi 6 / 6E)</li>
+                            <li>VPN et accès distants sécurisés</li>
+                            <li>Virtualisation et infrastructures</li>
+                        </ul>
+                    </div>
+                    <div class="card fade-in">
+                        <h3>🖥 Systèmes & Serveurs</h3>
+                        <ul>
+                            <li>Windows Server et Active Directory</li>
+                            <li>Linux (administration et services)</li>
+                            <li>Solutions de sauvegarde et NAS</li>
+                        </ul>
+                    </div>
+                    <div class="card fade-in">
+                        <h3>📡 Outils de veille</h3>
+                        <ul>
+                            <li>Sites spécialisés (ANSSI, CNIL, IT-Connect)</li>
+                            <li>Flux RSS et newsletters</li>
+                            <li>Chaînes YouTube et forums techniques</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <footer>
-        <p>© 2025 - Vincent Guignon | Portfolio BTS SIO SISR</p>
+        <p>© 2025 — <span>Vincent Guignon</span> · Portfolio BTS SIO SISR</p>
     </footer>
 
     <script>
-        (function () {
-            emailjs.init("jC7OkE87YxBsLqVG4"); // <-- ta clé ici
-        })();
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            // Update nav active state
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.toggle('active-link', a.dataset.page === pageId);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            emailjs.sendForm(
-                "service_br3gkbn",
-                "template_fwhg1mj",
-                this
-            )
-                .then(() => {
-                    document.getElementById("status").innerText = "Message envoyé ✅";
-                    this.reset();
-                })
-                .catch((error) => {
-                    document.getElementById("status").innerText = "Erreur ❌";
-                    console.error(error);
-                });
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                showPage(this.dataset.page);
+            });
         });
+
+        // Set accueil as default active
+        document.querySelector('nav a[data-page="accueil"]').classList.add('active-link');
     </script>
 </body>
 
